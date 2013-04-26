@@ -1,0 +1,15 @@
+<h1> Ruby Calendar </h1>
+
+<h3>Objective</h3>
+<p>Create a cal progam in Ruby that prints out the following: <br>
+    <ul>
+        <li>Month and Year header, centered</li>
+        <li>Days of the week header from Sunday thru Saturday</li>
+        <li>Dates on the correct days of the week that they would actually fall on</li>
+    </ul>
+<p>Calendar should work for any year ranging from 1800 - 3000</p>
+
+<p> Step 1: Develop Integration Tests</p>
+<p> Step 2: Submit link to Integration Tests in Canvas.</p>
+<p> Step 3: Implement 1 method with unit tests.</p>
+<p> Step 4: Commit to Github and Submit link. </p>
