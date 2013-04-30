@@ -26,6 +26,18 @@ def days_of_week
     return "Su Mo Tu We Th Fr Sa\n"
 end
 
+def number_of_days(month, year)
+    if month == 4 | 6 | 9 | 11
+        number_of_days = 30
+    elsif month == 2
+        number_of_days = year % 4 == 0 ? 29 : 28
+        number_of_days = 28 if year % 100 == 0 && year % 400 != 0
+    else number_of_days = 31
+    end
+    number_of_days
+end
+
+
 def first_day_of_month(month, year)
 # return 0/sat, 1/sun, 2/mon, 3/tue, 4/wed, 5/thu, 6/fri
 month_values = [14, 15, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13]
