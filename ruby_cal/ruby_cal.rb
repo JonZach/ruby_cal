@@ -8,6 +8,12 @@ def initialize(month, year)
 end
 
 def month_header
+    # refactor using .center(20).rstrip
+    # and simplify using string interpolation with variables
+    # requires creating array of month names
+    if year < 1800 || year > 3000
+        raise ArgumentError.new('This is not a valid year. Please enter a year between 1800 and 3000.')
+    end
     month_header = "    January #{year}\n" if month == 1
     month_header = "   February #{year}\n" if month == 2
     month_header = "     March #{year}\n" if month == 3
@@ -87,13 +93,36 @@ def leap_year?
     end
 end
 
+def format_month
+
+end
+
 def print_cal(month, year)
     cal_string = month_header + days_of_week
     days = (1..number_of_days(@month, @year)).to_a
     days.collect! do |day|
-        day.to_s
+        if day < 10
+            " " + day.to_s
+        else
+            day.to_s
+        end
     end
-    cal_string << days.join(" ")
+    # i = 0
+    # until i == first_day_of_month(@month, @year)
+    #     days.unshift("  ")
+    #     i += 1
+    first_day_of_month(@month, @year).times do
+        days.unshift("  ")
+    end
+    until days.length == 0
+      week = days.slice!(0,7)
+      cal_string << week.join(" ")
+      cal_string << "\n"
+    end
+    until cal_string.count("\n") >= 7
+      cal_string << "\n"
+    end
+    # cal_string << days.join(" ")
     return cal_string
 end
 
