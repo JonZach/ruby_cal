@@ -12,8 +12,7 @@ class CalTest < Test::Unit::TestCase
 
   # def test_01a_invalid_year
   #   new_cal = Calendar.new(1, 1799)
-  #   assert_raise ArgumentError do
-  #     puts `cal #{month} #{year}`
+  #   assert_equal(ArgumentError, new_cal.valid_year?)
   # end
 
   def test_02_month_header
@@ -62,8 +61,8 @@ class CalTest < Test::Unit::TestCase
   end
 
   def test_08_first_day_of_month
-    new_cal = Calendar.new(6, 1995)
-    assert_equal(5, new_cal.first_day_of_month(6, 1995))
+    new_cal = Calendar.new(2, 2009)
+    assert_equal(0, new_cal.first_day_of_month(2, 2009))
   end
 
   def test_09_print_cal

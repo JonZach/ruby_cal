@@ -26,18 +26,6 @@ def month_header
     month_header = "    October #{year}\n" if month == 10
     month_header = "   November #{year}\n" if month == 11
     month_header = "   December #{year}\n" if month == 12
-    month_header = "    January #{year}\n" if month == 1
-    # return "   February #{year}\n" if month == 2
-    # return "     March #{year}\n" if month == 3
-    # return "     April #{year}\n" if month == 4
-    # return "      May #{year}\n" if month == 5
-    # return "     June #{year}\n" if month == 6
-    # return "     July #{year}\n" if month == 7
-    # return "    August #{year}\n" if month == 8
-    # return "   September #{year}\n" if month == 9
-    # return "    October #{year}\n" if month == 10
-    # return "   November #{year}\n" if month == 11
-    # return "   December #{year}\n" if month == 12
     month_header
 end
 
@@ -54,32 +42,22 @@ def number_of_days(month, year)
     end
   end
 
-#=======    Original number_of_days method    ========#
-#======= Still Not Sure why this doesn't pass ========#
-#     if month == 4 | 6 | 9 | 11
-#         number_of_days = 30
-#     elsif month == 2
-#         number_of_days = year % 4 == 0 ? 29 : 28
-#         number_of_days = 28 if year % 100 == 0 && year % 400 != 0
-#     else
-#         number_of_days = 31
-#     end
-#     number_of_days
-# end
-
-
 def first_day_of_month(month, year)
-# return 0/sat, 1/sun, 2/mon, 3/tue, 4/wed, 5/thu, 6/fri
-month_values = [14, 15, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13]
-month = month_values[month - 1]
-# month = month.to_i
-year = year.to_i
-y = year
-if month == 1 || month == 2
-  y = (year - 1)
-end
-
-start_date = (1 + ((month * 26)/10) + y + (y/4) + (6 * (y/100)) + (y/400)) % 7
+# return 0/sun, 1/mon, 2/tue, 3/wed, 4/thu, 5/fri , 6/sat
+    # month_values = [14, 15, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13]
+    # m = month_values[month - 1]
+    # y = (3..12).include?(month) ? year : year - 1
+    
+    # start_date = (1 + ((m * 26)/10) + y + (y/4) + (6 * (y/100)) + (y/400)) % 7
+    m = @month.to_i
+    y = @year.to_i
+    if @month == 1 || @month == 2
+      m = @month + 12
+      y = @year - 1
+    end
+    first_day = ((1 + (((m + 1) * 26) / 10) + y + (y / 4) + 6 * (y / 100) + (y / 400)) % 7) - 1
+    first_day = 6 if first_day == -1
+    first_day
 end
 
 def leap_year?
@@ -94,7 +72,7 @@ def leap_year?
 end
 
 def format_month
-
+    #extract functionality from print_cal method and put here
 end
 
 def print_cal(month, year)
@@ -123,7 +101,7 @@ def print_cal(month, year)
       cal_string << "\n"
     end
     # cal_string << days.join(" ")
-    return cal_string
+    return cal_string + "\n"
 end
 
 
